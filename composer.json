@@ -1,0 +1,19 @@
+{
+    "name": "jordan/mvc-maison",
+    "description": "super projet mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+        
+    },
+    "authors": [
+        {
+            "name": "Eldryr62570",
+            "email": "jordan.moulin62570@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.4"
+    }
+}

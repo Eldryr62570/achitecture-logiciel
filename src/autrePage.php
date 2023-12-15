@@ -1,16 +1,17 @@
 <?php
 
-
 use App\Core\Router;
-use App\Controllers\UserController;
+use App\Controllers\TestController;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $dir = '../vendor/autoload.php';
 require_once($dir);
+
 $router = new Router();
 
 // Route vers la méthode index() du UserController
-$router->addRoute('GET', '/src/index.php', [new UserController(), 'index']);
+$router->addRoute('GET', '/src/autrePage.php', [new TestController(), 'index']);
 
 
 // Obtenez le chemin de l'URL actuelle
