@@ -33,4 +33,8 @@ class UsersRepository{
         return $this->genericQuery->getItemById($this->tableName , $id);
     }
 
+    /* public function createUser(Users $users) : int {
+        return $this->genericQuery->createItem($this->tableName , $users);
+    } */
+
 }

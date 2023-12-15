@@ -50,5 +50,22 @@ class GenericQuery {
             return null;
         }
     }
+
+    /* public function createItem(string $tableName, object $item): int {
+        try {
+            $query = "INSERT INTO $tableName (";
+            $query .= implode(", ", array_keys(get_object_vars($item)));
+            $query .= ") VALUES (";
+            $query .= ":" . implode(", :", array_keys(get_object_vars($item)));
+            $query .= ")";
+            $statement = $this->conn->prepare($query);
+            $statement->execute(get_object_vars($item));
+            return $this->conn->lastInsertId();
+        } catch (\PDOException $e) {
+            // Log the error or throw an exception
+            error_log("Error creating item: " . $e->getMessage());
+            return 0;
+        }
+    } */
     
 }
