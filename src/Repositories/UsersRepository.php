@@ -23,18 +23,19 @@ class UsersRepository{
     private function getDefaultTableName(): string {
             $className = (new ReflectionClass($this))->getShortName();
             $className = strtolower(str_replace('Repository', '', $className));
-        return strtolower($className);
+        return $className;
     }
 
     public function getAllUsers(): array {
         return $this->genericQuery->getAllItems($this->tableName);
     }
+    
     public function getUserById(int $id) : Users {
         return $this->genericQuery->getItemById($this->tableName , $id);
     }
 
-    /* public function createUser(Users $users) : int {
+    public function createUser(Users $users) : int {
         return $this->genericQuery->createItem($this->tableName , $users);
-    } */
+    }
 
 }

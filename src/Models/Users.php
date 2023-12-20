@@ -7,13 +7,13 @@ class Users {
     private string $lastname;
     private string $email;
 
-    public function __construct(array $userArray)
+    /* public function __construct(array $userArray)
     {
         $this->id = $userArray["id"];
         $this->firstname = $userArray["firstname"];
         $this->lastname = $userArray["lastname"];
         $this->email = $userArray["email"];
-    }
+    } */
 
     public function getId(){
         return $this->id;

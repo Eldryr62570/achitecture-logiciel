@@ -51,7 +51,7 @@
                     <h3 class="modal__title">Ajouter un nouvel utilisateur</h3>
                 </header>
                 <div class="modal__content">
-                    <form>
+                    <form method="POST" action="/src/user/create">
                         <div class="form-group">
                             <label for="lastname">Nom:</label>
                             <input type="text" id="lastname" name="lastname" class="form-control" required>
