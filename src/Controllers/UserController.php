@@ -6,11 +6,18 @@ use App\Core\DbConnector;
 use App\Repositories\UsersRepository;
 
 class UserController {
-    public function index() {
-        $dbConnector = new DbConnector();
-        $usersRepository = new UsersRepository($dbConnector);
-        $users = $usersRepository->getAllUsers();
+    private $dbConnector;
 
+    public function __construct()
+    {
+        $this->dbConnector = new DbConnector();
+    }
+
+    public function index() {
+       
+        $usersRepository = new UsersRepository($this->dbConnector);
+        $users = $usersRepository->getAllUsers();
+    
         $upOne = dirname(__DIR__, 1);
         require_once($upOne . "/views/printUsers.template.php");
     }
@@ -19,9 +26,10 @@ class UserController {
         $userId = $_GET['id'];
         echo 'Afficher l\'utilisateur avec l\'ID : ' . $userId;
     }
+
     public function createUser() {
-        $dbConnector = new DbConnector();
-        $usersRepository = new UsersRepository($dbConnector);
+      
+        $usersRepository = new UsersRepository($this->dbConnector);
 
         $users = new Users([
             "id" => null,
@@ -33,5 +41,5 @@ class UserController {
         header('Location: /src/index.php');
     }
 
-   
+
 }

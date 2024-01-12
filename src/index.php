@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Core\Router;
 use App\Controllers\UserController;
 
@@ -13,6 +12,7 @@ $router = new Router();
 // Route vers la méthode index() du UserController
 $router->addRoute('GET', '/src/index.php', [new UserController(), 'index']);
 $router->addRoute('POST', '/src/index.php', [new UserController(), 'createUser']);
+
 
 // Obtenez le chemin de l'URL actuelle
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

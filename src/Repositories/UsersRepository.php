@@ -37,6 +37,7 @@ class UsersRepository{
    
     public function createUser(Users $user): int {
         try {
+        
             $query = "INSERT INTO {$this->tableName} (firstname, lastname, email) VALUES (:firstname, :lastname, :email)";
             $statement = $this->conn->prepare($query);
     
