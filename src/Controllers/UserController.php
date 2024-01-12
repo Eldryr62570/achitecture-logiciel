@@ -11,7 +11,6 @@ class UserController {
         $usersRepository = new UsersRepository($dbConnector);
         $users = $usersRepository->getAllUsers();
 
-
         $upOne = dirname(__DIR__, 1);
         require_once($upOne . "/views/printUsers.template.php");
     }
@@ -20,17 +19,19 @@ class UserController {
         $userId = $_GET['id'];
         echo 'Afficher l\'utilisateur avec l\'ID : ' . $userId;
     }
-
     public function createUser() {
         $dbConnector = new DbConnector();
         $usersRepository = new UsersRepository($dbConnector);
 
-        $users = new Users();
-        $users->setFirstname($_POST['firstname']);
-        $users->setLastname($_POST['lastname']);
-        $users->setEmail($_POST['email']);
-
+        $users = new Users([
+            "id" => null,
+            "firstname" => $_POST["firstname"],
+            "lastname" => $_POST["lastname"],
+            "email" => $_POST["email"]
+        ]);
         $usersRepository->createUser($users);
         header('Location: /src/index.php');
     }
+
+   
 }
