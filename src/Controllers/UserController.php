@@ -40,6 +40,17 @@ class UserController {
         $usersRepository->createUser($users);
         header('Location: /src/index.php');
     }
+    public function changeUser(){
+        $usersRepository = new UsersRepository($this->dbConnector);
+        $users = new Users([
+            "id" => $_POST["id"],
+            "firstname" => $_POST["firstname"],
+            "lastname" => $_POST["lastname"],
+            "email" => $_POST["email"]
+        ]);
 
+        $usersRepository->changeUser($users);        
+        header('Location: /src/index.php');
+    }
 
 }

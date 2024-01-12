@@ -9,7 +9,37 @@
 </head>
 
 <body>
-
+  <section>
+    <div class="dashboard">
+      <button data-modal-trigger="sample-modal2" class="button dashboard-btn">Ajouter un utilisateur</a>
+    </div>
+    <div class="modal" data-modal-name="sample-modal2" data-modal-dismiss>
+      <div class="modal__dialog">
+        <header class="modal__header">
+          <h3 class="modal__title">Ajouter un nouvel utilisateur</h3>
+        </header>
+        <div class="modal__content">
+          <form method="POST" action="/src/index.php">
+            <input id="actionInput" type="hidden" name="action" value="createUser">
+            <input id="idUser" type="hidden" name="action" value="0">
+            <div class="form-group">
+              <label for="lastname">Nom:</label>
+              <input type="text" id="lastname" name="lastname" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="firstname">Prénom:</label>
+              <input type="text" id="firstname" name="firstname" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <button type="submit" class="button dashboard-btn">Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="container">
     <aside class="sidebar">
       <ul class="menu-list">
@@ -42,36 +72,6 @@
         </button>
       </div>
     </aside>
-    <div class="dashboard">
-      <button data-modal-trigger="sample-modal2" class="button dashboard-btn">Ajouter un utilisateur</a>
-    </div>
-    <section>
-      <div class="modal" data-modal-name="sample-modal2" data-modal-dismiss>
-        <div class="modal__dialog">
-          <header class="modal__header">
-            <h3 class="modal__title">Ajouter un nouvel utilisateur</h3>
-          </header>
-          <div class="modal__content">
-            <form method="POST" action="/src/index.php">
-              <input type="hidden" name="action" value="createUser"> <!-- Champ caché pour spécifier l'action -->
-              <div class="form-group">
-                <label for="lastname">Nom:</label>
-                <input type="text" id="lastname" name="lastname" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="firstname">Prénom:</label>
-                <input type="text" id="firstname" name="firstname" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-              </div>
-              <button type="submit" class="button dashboard-btn">Ajouter</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="main">
       <div class="table-container">
         <table>
@@ -89,19 +89,21 @@
                 <td><?= $user->getFirstname() ?></td>
                 <td><?= $user->getLastname() ?></td>
                 <td><?= $user->getEmail() ?></td>
-                <td></td>
+                <td>
+                  <button class="edit" data-id-user="<?= $user->getId() ?>">Modifier</button>
+                  <button class="delete" date-id-user="<?= $user->getId() ?>">Supprimer</button>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
       </div>
     </section>
-    
   </div>
 
 
 </body>
 <script type="text/javascript" src="/src/assets/js/sidebar.js"></script>
 <script type="text/javascript" src="/src/assets/js/modal.js"></script>
-
+<script type="text/javascript" src="/src/assets/js/admin.js"></script>
 </html>

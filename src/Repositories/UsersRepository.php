@@ -57,6 +57,19 @@ class UsersRepository{
             return -1; // Ou une valeur d'erreur appropriée
         }
     }
+    public function changeUser(Users $user){
+        $query = "UPDATE users SET 
+            lastname = :lastname, firstname=:firstname, email=:email
+         WHERE id = :id_user";
+
+         $statement = $this->conn->prepare($query);
+         $statement->bindValue(':id_user' , $user->getId());
+         $statement->bindValue(':lastname' , $user->getLastname());
+         $statement->bindValue(':firstname' , $user->getFirstname());
+         $statement->bindValue(':email' , $user->getEmail());
+
+         $statement->execute();
+    }
     
     
     
