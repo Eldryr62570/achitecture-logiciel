@@ -2,7 +2,7 @@
 namespace App\Models;
 
 class Users {
-    private int $id;
+    private int|null $id;
     private string $firstname;
     private string $lastname;
     private string $email;

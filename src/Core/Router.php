@@ -10,11 +10,20 @@ class Router {
 
     public function match($method, $uri) {
         foreach ($this->routes as $route) {
+            // Vérifiez d'abord la méthode et le chemin
             if ($route['method'] === $method && $route['path'] === $uri) {
-                return $route['callback'];
+                if ($method === 'POST' && isset($_POST['action'])) {
+                    $controller = $route['callback'][0];
+                    $action = $_POST['action'];
+                    if (method_exists($controller, $action)) {
+                        return [$controller, $action];
+                    }
+                } else {
+                    // Pour les autres requêtes, retournez simplement le callback complet
+                    return $route['callback'];
+                }
             }
         }
-        die;
-        return null;
+        return null; // Aucune route correspondante trouvée
     }
 }

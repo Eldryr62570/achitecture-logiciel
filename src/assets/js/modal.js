@@ -1,11 +1,18 @@
+let allEditButton = document.querySelectorAll(".edit")
+let actionInput = document.querySelector("#actionInput")
+let idUserInput = document.querySelector("#idUser")
+
 var _targettedModal,
   _triggers = document.querySelectorAll("[data-modal-trigger]"),
   _dismiss = document.querySelectorAll("[data-modal-dismiss]"),
   modalActiveClass = "is-modal-active";
 
-function showModal(el) {
+function showModal(el , title = "Ajouter un nouvel utilisateur") {
   _targettedModal = document.querySelector('[data-modal-name="' + el + '"]');
-  console.log(_targettedModal);
+  _modal_title = document.querySelector('.modal__title')
+  _modal_title.innerText = title
+  actionInput.value = "createUser"
+  idUserInput.value = "0"
   _targettedModal.classList.add(modalActiveClass);
 }
 

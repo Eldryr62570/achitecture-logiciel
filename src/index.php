@@ -1,8 +1,8 @@
 <?php
 
-
 use App\Core\Router;
 use App\Controllers\UserController;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $dir = '../vendor/autoload.php';
@@ -11,6 +11,7 @@ $router = new Router();
 
 // Route vers la méthode index() du UserController
 $router->addRoute('GET', '/src/index.php', [new UserController(), 'index']);
+$router->addRoute('POST', '/src/index.php', [new UserController(), 'createUser']);
 
 
 // Obtenez le chemin de l'URL actuelle

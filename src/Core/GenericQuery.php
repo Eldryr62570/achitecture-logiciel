@@ -51,7 +51,8 @@ class GenericQuery {
         }
     }
 
-    /* public function createItem(string $tableName, object $item): int {
+    //Utilisation de ReflectorWrapper ??
+    public function createItem(string $tableName, object $item): int {
         try {
             $query = "INSERT INTO $tableName (";
             $query .= implode(", ", array_keys(get_object_vars($item)));
@@ -66,6 +67,6 @@ class GenericQuery {
             error_log("Error creating item: " . $e->getMessage());
             return 0;
         }
-    } */
+    }
     
 }
