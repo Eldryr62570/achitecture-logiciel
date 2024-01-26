@@ -2,6 +2,7 @@
 
 namespace App\Handlers\CommandHandlers;
 
+use App\Models\Id;
 use ReflectionClass;
 use App\Models\Users;
 use App\Core\BaseHandler;
@@ -24,24 +25,25 @@ class CreateUserCommandHandler extends BaseHandler
             $properties = $reflectionClass->getProperties();
             $columnNames = array_map(function($prop) {
                 return $prop->getName();
-            }, $properties);
-
+            }, array_filter($properties , function($prop){
+                return empty($prop->getAttributes(Id::class)) ;
+            }));
+            
             $bindValues = array_map(function ($col) {
                 return ':' . $col;
             }, $columnNames);
 
             $query = "INSERT INTO {$this->tableName} (" . implode(', ', $columnNames) . ") VALUES (" . implode(', ', $bindValues) . ")";
             $statement = $this->conn->prepare($query);
-            
+
             // Liaison des paramètres
             foreach ($columnNames as $field) {
-                $getterMethod = 'get' . ucfirst($field);
-                $statement->bindValue(':' . $field, $user->$getterMethod());
+                    $getterMethod = 'get' . ucfirst($field);
+                    $statement->bindValue(':' . $field, $user->$getterMethod());
             }
-            
+
             // Exécution de la requête
             $statement->execute();
-            
             return $this->conn->lastInsertId();
         } catch (\PDOException $e) {
             error_log("Erreur lors de la création de l'utilisateur : " . $e->getMessage());

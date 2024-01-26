@@ -2,7 +2,10 @@
 namespace App\Models;
 
 class Users {
+
+    #[Id]
     private int|null $id;
+    
     private string $firstname;
     private string $lastname;
     private string $email;
@@ -14,7 +17,7 @@ class Users {
         $this->lastname = $userArray["lastname"];
         $this->email = $userArray["email"];
     }
-
+    
     public function getId(){
         return $this->id;
     }

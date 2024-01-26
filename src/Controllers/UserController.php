@@ -24,7 +24,7 @@ class UserController {
             "lastname" => "ha",
             "email" => "ko"
         ]);
-
+        
         $insertUserHandler->handle($userToInsert);
 
         include 'views/printUsers.template.php';
